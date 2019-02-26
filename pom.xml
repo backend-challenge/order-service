@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.invillia.acme</groupId>
-    <artifactId>invillia</artifactId>
+    <artifactId>invillia-order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>invillia</name>
-    <description>Demo project for Spring Boot</description>
+    <name>invillia-order-service</name>
+    <description>Projeto do micro-serviço de ordens de compra</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
