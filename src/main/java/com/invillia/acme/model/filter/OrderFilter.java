@@ -4,6 +4,7 @@ import com.invillia.acme.model.dto.OrderStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -12,7 +13,8 @@ import java.time.LocalDate;
 @Builder
 public class OrderFilter {
 
-    private String address;
-    private LocalDate confirmationDate;
-    private OrderStatus status;
+	private String address;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate confirmationDate;
+	private OrderStatus status;
 }

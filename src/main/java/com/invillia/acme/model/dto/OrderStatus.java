@@ -8,8 +8,8 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum OrderStatus {
 
-    PENDING_PAYMENT,
-    APPROVED,
-    REFUNDED,
-    REFUND_REQUEST
+	PENDING_PAYMENT,
+	APPROVED,
+	REFUNDED,
+	REFUND_REQUEST
 }

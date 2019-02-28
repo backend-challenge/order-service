@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 public class OrderDto {
 
-    private String address;
-    private List<ItemDto> items;
+	private String address;
+	private List<ItemDto> items;
 
 }
