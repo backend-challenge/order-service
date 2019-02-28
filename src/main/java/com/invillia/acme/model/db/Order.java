@@ -1,31 +1,33 @@
 package com.invillia.acme.model.db;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.invillia.acme.model.dto.OrderStatus;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "tb_order")
 public class Order {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @Column
     private String address;
     @Column
     private LocalDate confirmationDate;
     @Column
-    private Integer status;
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+    @OneToMany(cascade = {CascadeType.PERSIST})
     private List<Item> items;
 
 }
+
+

@@ -1,21 +1,20 @@
 package com.invillia.acme.model.db;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "tb_item")
 public class Item {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @Column
     private String description;
