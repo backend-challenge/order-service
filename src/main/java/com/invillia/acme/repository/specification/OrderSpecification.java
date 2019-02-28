@@ -7,7 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class OrderSpecification {
 
@@ -30,7 +29,7 @@ public class OrderSpecification {
     private static Specification<Order> equalStatus(OrderStatus status) {
         return (root, query, cb) -> {
             if (StringUtils.isEmpty(status)) {
-               return null;
+                return null;
             }
             return cb.equal(root.get("status"), status.name());
         };

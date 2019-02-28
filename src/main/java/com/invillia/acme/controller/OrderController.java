@@ -37,7 +37,7 @@ public class OrderController {
         List<Item> items = new ArrayList<>();
         dto.getItems()
                 .stream()
-                .forEach( d -> {
+                .forEach(d -> {
                     Item itemEntity = new Item();
                     BeanUtils.copyProperties(d, itemEntity, "id");
                     items.add(itemEntity);
@@ -55,7 +55,7 @@ public class OrderController {
         Order entity = repository.findById(id).orElseThrow(
                 () -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Ordem não encontrada")
         );
-        if(Objects.nonNull(entity.getConfirmationDate())) {
+        if (Objects.nonNull(entity.getConfirmationDate())) {
             throw new RuntimeException("Ordem já confimada");
         }
 

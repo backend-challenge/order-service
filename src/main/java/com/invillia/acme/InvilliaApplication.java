@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class InvilliaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InvilliaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(InvilliaApplication.class, args);
+    }
 }
