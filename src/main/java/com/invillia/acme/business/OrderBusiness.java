@@ -62,7 +62,7 @@ public class OrderBusiness {
 				OrderFilter.builder()
 						.address(address)
 						.status(status)
-						.confirmationDate(confirmationDate.toString())
+						.confirmationDate(Objects.nonNull(confirmationDate) ? confirmationDate.toString() : null)
 						.build();
 		return repository.findAll(OrderSpecification.getFilter(filter));
 	}
