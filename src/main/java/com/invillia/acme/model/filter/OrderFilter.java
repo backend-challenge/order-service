@@ -15,6 +15,6 @@ public class OrderFilter {
 
 	private String address;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate confirmationDate;
+	private String confirmationDate;
 	private OrderStatus status;
 }

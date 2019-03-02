@@ -22,7 +22,7 @@ public class OrderSpecification {
 			if (StringUtils.isEmpty(address)) {
 				return null;
 			}
-			return cb.like(cb.upper(root.get("name")), "%" + address.toUpperCase() + "%");
+			return cb.like(cb.upper(root.get("address")), "%" + address.toUpperCase() + "%");
 		};
 	}
 
@@ -31,16 +31,16 @@ public class OrderSpecification {
 			if (StringUtils.isEmpty(status)) {
 				return null;
 			}
-			return cb.equal(root.get("status"), status.name());
+			return cb.equal(root.get("status"), status);
 		};
 	}
 
-	private static Specification<Order> equalConfirmationDate(LocalDate confirmationDate) {
+	private static Specification<Order> equalConfirmationDate(String confirmationDate) {
 		return (root, query, cb) -> {
 			if (StringUtils.isEmpty(confirmationDate)) {
 				return null;
 			}
-			return cb.equal(root.get("confirmationDate"), confirmationDate);
+			return cb.equal(root.get("confirmationDate"), LocalDate.parse(confirmationDate));
 		};
 	}
 }

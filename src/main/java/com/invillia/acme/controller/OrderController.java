@@ -33,7 +33,7 @@ public class OrderController {
 
 	@ApiOperation("Cria uma nova ordem com os itens")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(value = "address", required = false) String address, @RequestParam(value = "status", required = false) OrderStatus status, @RequestParam(value = "confirmationDate", required = false) LocalDate confirmationDate) {
+	public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(value = "address", required = false) String address, @RequestParam(value = "status", required = false) OrderStatus status, @RequestParam(value = "confirmationDate", required = false) String confirmationDate) {
 
 		return ResponseEntity.ok(orderBusiness.getOrderByFilter(address, status, confirmationDate));
 	}

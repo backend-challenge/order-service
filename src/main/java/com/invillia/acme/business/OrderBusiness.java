@@ -57,13 +57,12 @@ public class OrderBusiness {
 		return repository.save(entity);
 	}
 
-	public List<Order> getOrderByFilter(String address, OrderStatus status, LocalDate confirmationDate) {
-		// TODO: Validar os filtros
+	public List<Order> getOrderByFilter(String address, OrderStatus status, String confirmationDate) {
 		OrderFilter filter =
 				OrderFilter.builder()
 						.address(address)
 						.status(status)
-						.confirmationDate(confirmationDate)
+						.confirmationDate(confirmationDate.toString())
 						.build();
 		return repository.findAll(OrderSpecification.getFilter(filter));
 	}
