@@ -31,7 +31,7 @@ public class OrderController {
 		return ResponseEntity.ok(orderBusiness.confirmOrder(id));
 	}
 
-	@ApiOperation("Cria uma nova ordem com os itens")
+	@ApiOperation("Busca todas as ordens de acordo com o filtro")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
 	public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(value = "address", required = false) String address, @RequestParam(value = "status", required = false) OrderStatus status, @RequestParam(value = "confirmationDate", required = false) String confirmationDate) {
 
