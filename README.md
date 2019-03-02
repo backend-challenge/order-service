@@ -15,13 +15,18 @@ Para construir a aplicação é necessário que o container com o banco de dados
 ## Como rodar a aplicação
 
 1) Fazer checkout do projeto.
-2) Fazer o build do projeto com o comando: mvn clean package
-3) Construir o imagem com o Dockerfile: docker build . -t docker-store-service
-4) Subir a aplicação no container: docker run -p 8090:8090 --name docker-store-service --link mysql-database:mysql -d docker-store-service
+2) Fazer o build do projeto com o comando:
+        
+        mvn clean package
+3) Construir o imagem com o Dockerfile: 
+
+        docker build . -t docker-store-service
+4) Subir a aplicação no container: 
+
+        docker run -p 8090:8090 --name docker-store-service --link mysql-database:mysql -d docker-store-service
 
 ## Funcionalidades
-    
-Neste micro-serviço foi implementado as seguintes funcionalidades:
+    Neste micro-serviço foi implementado as seguintes funcionalidades:
         1) Criação de uma nova ordem com seus itens
         2) Confirmar uma ordem já criada, para que esteja apta para ser paga
         3) Listagem das ordens filtrando por seus atributos.
