@@ -19,10 +19,10 @@ Para construir a aplicação é necessário que o container com o banco de dados
         mvn clean package
 3) Construir o imagem com o Dockerfile: 
 
-        docker build . -t docker-store-service
+        docker build . -t docker-order-service
 4) Subir a aplicação no container: 
 
-        docker run -p 8090:8090 --name docker-store-service --link mysql-database:mysql -d docker-store-service
+        docker run -p 8070:8070 --name docker-order-service --link mysql-database:mysql -d docker-order-service
 
 ## Funcionalidades
     Neste micro-serviço foi implementado as seguintes funcionalidades:
