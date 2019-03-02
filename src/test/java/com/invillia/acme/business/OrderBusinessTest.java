@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.math.BigDecimal;
@@ -33,6 +34,7 @@ public class OrderBusinessTest {
 	private static final Integer ID = 1;
 	private static final BigDecimal UNIT_PRICE = BigDecimal.valueOf(13900.0);
 	private static final OrderStatus STATUS = OrderStatus.PENDING_PAYMENT;
+	private static final LocalDate CONFIRMATION_DATE = LocalDate.parse("2019-01-01");
 	@InjectMocks
 	private OrderBusiness business;
 	@Mock
@@ -62,7 +64,7 @@ public class OrderBusinessTest {
 	}
 
 	@Test
-	public void confirmOrderTest() {
+	public void testConfirmOrderTest() {
 		Mockito.when(orderRepository.findById(ID)).thenReturn(Optional.of(new Order()));
 		business.confirmOrder(ID);
 
@@ -74,15 +76,21 @@ public class OrderBusinessTest {
 	}
 
 	@Test(expected = HttpClientErrorException.class)
-	public void confirmOrderTestItemNotFound() {
+	public void testConfirmOrderTestItemNotFound() {
 		Mockito.when(orderRepository.findById(ID)).thenReturn(Optional.empty());
 		business.confirmOrder(1);
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void confirmOrderError() {
+	public void testConfirmOrderError() {
 		Mockito.when(orderRepository.findById(ID)).thenReturn(Optional.of(Order.builder().confirmationDate(LocalDate.now()).build()));
 		business.confirmOrder(ID);
+	}
+
+	@Test
+	public void testGetOrderByFilter() {
+		business.getOrderByFilter(ADDRESS, STATUS, CONFIRMATION_DATE.toString());
+		Mockito.verify(orderRepository).findAll((Specification<Order>) Mockito.any());
 	}
 
 	private OrderDto getOrderDto() {
@@ -95,5 +103,4 @@ public class OrderBusinessTest {
 		dto.setItems(Collections.singletonList(itemDto));
 		return dto;
 	}
-
 }
