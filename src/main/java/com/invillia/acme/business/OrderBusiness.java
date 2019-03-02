@@ -25,6 +25,9 @@ public class OrderBusiness {
 	@Autowired
 	private OrderRepository repository;
 
+	@Autowired
+	private ItemRepository itemRepository;
+
 	public Order createOrder(OrderDto dto) {
 		List<Item> items = new ArrayList<>();
 		dto.getItems()
@@ -34,9 +37,11 @@ public class OrderBusiness {
 					BeanUtils.copyProperties(d, itemEntity, "id");
 					items.add(itemEntity);
 				});
+		List<Item> itemList = itemRepository.saveAll(items);
+
 		Order orderEntity = new Order();
 		orderEntity.setAddress(dto.getAddress());
-		orderEntity.setItems(items);
+		orderEntity.setItems(itemList);
 		orderEntity.setStatus(OrderStatus.PENDING_PAYMENT);
 		return repository.save(orderEntity);
 	}
@@ -48,7 +53,7 @@ public class OrderBusiness {
 		if (Objects.nonNull(entity.getConfirmationDate())) {
 			throw new RuntimeException("Ordem já confimada");
 		}
-
+		entity.setConfirmationDate(LocalDate.now());
 		return repository.save(entity);
 	}
 
