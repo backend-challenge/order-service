@@ -26,15 +26,6 @@ import java.util.Optional;
 @RunWith(MockitoJUnitRunner.class)
 public class OrderBusinessTest {
 
-	@InjectMocks
-	private OrderBusiness business;
-
-	@Mock
-	private OrderRepository orderRepository;
-
-	@Mock
-	private ItemRepository itemRepository;
-
 	private static final String ADDRESS = "address";
 	private static final String DESCRIPTION = "Macbook";
 	private static final Integer QUANTITY = 1;
@@ -42,6 +33,12 @@ public class OrderBusinessTest {
 	private static final Integer ID = 1;
 	private static final BigDecimal UNIT_PRICE = BigDecimal.valueOf(13900.0);
 	private static final OrderStatus STATUS = OrderStatus.PENDING_PAYMENT;
+	@InjectMocks
+	private OrderBusiness business;
+	@Mock
+	private OrderRepository orderRepository;
+	@Mock
+	private ItemRepository itemRepository;
 
 	@Test
 	public void testCreateOrder() {
